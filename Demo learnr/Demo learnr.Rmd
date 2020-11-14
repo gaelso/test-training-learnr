@@ -1,5 +1,5 @@
 ---
-title: "Tutorial"
+title: "Demo learnr NFI module 7: Analysis"
 output: learnr::tutorial
 runtime: shiny_prerendered
 ---
@@ -9,6 +9,17 @@ library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+```{r create-data include=FALSE}
+library(tidyverse)
+
+tree <- tibble(
+  tree_dbh  = sample(5:100, 20, replace = F),
+  tree_hmod = exp(0.893 + 0.760 * log(tree_dbh) - 0.0340 * log(tree_dbh^2)),
+  tree_hres = exp(rnorm(n = 20, mean = 0, sd = 0.243)),
+  tree_h    = tree_hmod * tree_hres
+  )
+
+```
 
 ## Topic 1
 
