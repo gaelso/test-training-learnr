@@ -1,6 +1,9 @@
 ---
 title: "Demo learnr NFI module 7: Analysis"
-output: learnr::tutorial
+output: 
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
 runtime: shiny_prerendered
 ---
 
@@ -9,43 +12,119 @@ library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-```{r create-data include=FALSE}
+```{r create-data, include=FALSE}
 library(tidyverse)
-
+set.seed(1)
 tree <- tibble(
-  tree_dbh  = sample(5:100, 20, replace = F),
-  tree_hmod = exp(0.893 + 0.760 * log(tree_dbh) - 0.0340 * log(tree_dbh^2)),
-  tree_hres = exp(rnorm(n = 20, mean = 0, sd = 0.243)),
-  tree_h    = tree_hmod * tree_hres
+  dbh          = sample(5:100, 20, replace = F),
+  height_calc  = exp(0.893 + 0.760 * log(dbh) - 0.0340 * log(dbh^2)),
+  height_error = exp(rnorm(n = 20, mean = 0, sd = 0.243)),
+  height_top   = height_calc * height_error,
+  dist1        = sample(0:800, 20, replace = T)/100,
+  dist2        = sample(0:1784, 20, replace = T)/100,
+  distance     = if_else(dbh < 30, dist1, dist2),
+  azimuth      = sample(0:360, 20, replace = T)
+  ) %>%
+  select(-dist1, -dist2)
+
+```
+
+```{r gr-design, include=FALSE}
+
+set_plot_style   <- "dark" ## Choose between  dark, light and print
+source("R/graphic-design.R")
+
+```
+
+## Introduction
+
+Welcome to the section 7 of the training modules on National Forest Inventory. Here we are going to talk about data analysis. And we are going to practice some of the key calculation step together with the statistical language R.
+
+Please watch the introduction video below and let's get started!
+
+<center>
+
+![](https://youtu.be/MVHWr30Pi0M){width='80%'}
+
+</center>
+
+## Overview of data analysis
+
+The data analysis builds on all the previous topics covered in the NFI modules and it's very important to have a good understanding of each of these steps before even starting to think about the data analysis. 
+
+```{r module-wheel, fig.align='center', fig.cap="NFI modules wheel."}
+
+knitr::include_graphics("images/NFI-e-learning-07-Analysis.png")
+
+```
+
+### Analogy with photography
+
+Let's have a look at two photos taken with the same target, a plant on a table. Let's not debate on the artistic value of these two pictures but analyze which one is easiest to edit and publish. 
+
+INSERT bad photo / good photo
+
+```{r choose-pic}
+question("Which picture will be easier to edit for publication?",
+    answer("left picture"),
+    answer("right picture", correct = TRUE),
+    allow_retry = TRUE
   )
-
 ```
 
-## Topic 1
 
-### Exercise 
+### Analogy with photography (cont.)
 
-*Here's a simple exercise with an empty code chunk provided for entering the answer.*
+The right photography indeed. If we look at the photography on the left, the objective is not clear, the whole terrace is on the photo, the light is not right, the photo is also rotated. To transform this photo into a publication ready image, the editor will have to rotate the image, crop it and correct the light. With the right photo however, a small tuning of the light would be enough.
 
-Write the R code required to add two plus two:
+Well, data analysis works the same way. If the objectives of the NFI are not clear, the sampling design is not tailored to the key variables of interest, or the field work not well prepared, the following data analysis is going to be very tedious and complex statistics required to correct for all the potential sources of error, if that is even possible.
 
-```{r two-plus-two, exercise=TRUE}
+On the opposite side, with a good design and implementation, based on clear objectives, the data analysis step can be rather straightforward and relatively simple.
 
+
+## What tools and applications for NFI data analysis?
+
+TBD
+
+
+## Hands on R
+
+Here we are going to use R to visualize the trees of one plot. 
+
+
+### Our trees 
+
+The tree data is stored in a table `tree`. You can visualize the data in a table format by runing the table name `tree` in the console.
+
+```{r show-data, exercise=TRUE, exercise.lines=3}
+tree
 ```
 
-### Exercise with Code
 
-*Here's an exercise with some prepopulated code as well as `exercise.lines = 5` to provide a bit more initial room to work.*
+### let's make some graphs
 
-Now write a function that adds any two numbers and then call it:
 
-```{r add-function, exercise=TRUE, exercise.lines = 5}
-add <- function() {
-  
-}
+
+
+## This is a demo of embedded shiny apps
+
+
+```{r, echo=FALSE}
+sliderInput("bins", "Number of bins:", min = 1, max = 50, value = 30)
+plotOutput("distPlot")
 ```
 
-## Topic 2
+```{r, context="server"}
+output$distPlot <- renderPlot({
+  x <- faithful[, 2]  # Old Faithful Geyser data
+  bins <- seq(min(x), max(x), length.out = input$bins + 1)
+  hist(x, breaks = bins, col = 'darkgray', border = 'white')
+})
+```
+
+
+
+## Default template stuff
 
 ### Exercise with Hint
 
