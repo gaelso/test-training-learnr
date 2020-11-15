@@ -12,11 +12,14 @@ library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-```{r create-data, include=FALSE}
+```{r libs, include = FALSE }
 library(tidyverse)
+```
+
+```{r create-data, include=FALSE}
 set.seed(1)
 tree <- tibble(
-  dbh          = sample(5:100, 20, replace = F),
+  dbh          = sample(50:1000, 20, replace = F) / 10,
   height_calc  = exp(0.893 + 0.760 * log(dbh) - 0.0340 * log(dbh^2)),
   height_error = exp(rnorm(n = 20, mean = 0, sd = 0.243)),
   height_top   = height_calc * height_error,
@@ -94,7 +97,7 @@ Here we are going to use R to visualize the trees of one plot.
 
 ### Our trees 
 
-The tree data is stored in a table `tree`. You can visualize the data in a table format by runing the table name `tree` in the console.
+The tree data is stored in a table `tree`. You can visualize the data in a table format by running the table name `tree` in the console.
 
 ```{r show-data, exercise=TRUE, exercise.lines=3}
 tree
@@ -103,11 +106,12 @@ tree
 
 ### let's make some graphs
 
-
+TBD
 
 
 ## This is a demo of embedded shiny apps
 
+### learnr default example
 
 ```{r, echo=FALSE}
 sliderInput("bins", "Number of bins:", min = 1, max = 50, value = 30)
@@ -122,6 +126,41 @@ output$distPlot <- renderPlot({
 })
 ```
 
+
+### Generate tree data based on plot basal area
+
+```{r, echo=FALSE}
+sliderInput("basal_area", "Basal area (m^2^/ha): ", min = 10, max = 80, value = 40, step = 5)
+plotOutput("gr_ba")
+```
+
+```{r, context="server"}
+output$gr_ba <- renderPlot({
+  
+  set.seed(1)
+  while(ba_round != input$basal_area) {
+    vec_dbh <- sample(50:1000, 20) / 10
+    ba <- sum(vec_dbh^2 / 10000 * pi)
+    ba_round <- round(ba / 5) * 5
+  }
+  
+  tree <- tibble(
+  dbh          = vec_dbh, 
+  height_calc  = exp(0.893 + 0.760 * log(dbh) - 0.0340 * log(dbh^2)),
+  height_error = exp(rnorm(n = 20, mean = 0, sd = 0.243)),
+  height_top   = height_calc * height_error,
+  dist1        = sample(0:800, 20, replace = T) / 100,
+  dist2        = sample(0:1784, 20, replace = T) / 100,
+  distance     = if_else(dbh < 30, dist1, dist2),
+  azimuth      = sample(0:360, 20, replace = T)
+  ) %>%
+  select(-dist1, -dist2) %>%
+  ggplot(aes()) +
+  x <- faithful[, 2]  # Old Faithful Geyser data
+  bins <- seq(min(x), max(x), length.out = input$bins + 1)
+  hist(x, breaks = bins, col = 'darkgray', border = 'white')
+})
+```
 
 
 ## Default template stuff
