@@ -1,0 +1,12 @@
+name: test-nfi-modules
+title: test-nfi-modules
+username:
+account: gaelsola
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3235495
+bundleId: 3862772
+url: https://gaelsola.shinyapps.io/test-nfi-modules/
+when: 1605439621.26149
+asMultiple: FALSE
+asStatic: FALSE
