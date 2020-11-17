@@ -10,15 +10,17 @@ runtime: shiny_prerendered
 ```{r setup, include=FALSE}
 ## Libraries
 library(learnr)
+library(gradethis)
 library(tidyverse)
 library(ggdark)
 
+
 ## Options for checking
-# tutorial_options(
-#   exercise.timelimit = 40, 
-#   exercise.checker = gradethis::grade_learnr,
-#   exercise.error.check.code = gradethis::grade_learnr_error
-#   )
+tutorial_options(
+  exercise.timelimit = 40,
+  exercise.checker = gradethis::grade_learnr#,
+  #exercise.error.check.code = gradethis::grade_learnr_error
+  )
 
 ## Hide non-exercise R chunks
 knitr::opts_chunk$set(echo = FALSE)
@@ -26,8 +28,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 
 ```{r gr-design, include=FALSE}
-library(ggdark)
-set_plot_style   <- "dark" ## Choose between  dark, light and print
+set_plot_style <- "dark" ## Choose between  dark, light and print
 source("R/graphic-design.R")
 
 ```
@@ -63,7 +64,7 @@ INSERT bad photo / good photo
 ```{r choose-pic}
 question("Which picture will be easier to edit for publication?",
     answer("left picture"),
-    answer("right picture", correct = TRUE),
+    answer("right picture", correct = TRUE, message = "Yes that picture looks much better!"),
     allow_retry = TRUE
   )
 ```
@@ -85,9 +86,28 @@ TBD
 
 ## Hands on R
 
-Here we are going to use R to visualize the trees of one plot.  **This is a demo of embedded shiny apps**
+Let's start to code !
 
-### Create tree data based on plot basal area
+<center>
+![](https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif){width='40%'}
+</center>
+
+In the following sections we are going to use R to create and visualize the trees of one plot.
+
+
+## Create random tree data based on plot basal area
+
+### Create the data
+
+ **This is a demo of embedded shiny module.**
+
+Use the slider to set a target area and have a look at the trees created with their diameter at breast height and total height. Tree total height is assigned based on the [chave et al. 2014](https://doi.org/10.1111/gcb.12629) equation:
+
+
+$$ln(H) = 0.893 - E + 0.760 \times ln(DBH) - 0.0340 \times [ln(DBH)]^2$$
+
+
+With $E = 0$, and a random error is associated to each tree based on the model residual standard error $RSE = 0.243$. You can see the model and the error component by clicking on the "show model" button.
 
 ```{r create-tree, include=FALSE}
 source("R/create-trees.R")
@@ -119,6 +139,53 @@ Let's continue with the plot that has basal area of around 60 m^2^/ha. The table
 ```{r show-data, exercise=TRUE, exercise.lines=3}
 tree
 ```
+
+
+## Recreate the graph
+
+In this section we will recreate the previous graph step by step using the ggplot package.
+
+### Run the library
+
+R works with a base set of packages, installed during the installation and loaded in the environment when R is started. But it's main strength is that a large number of additional packages have been developed by the community to improve R features. One of the most  widely used is `ggplot2`. Let's load the package by running this chunk:
+
+```{r load-package, exercise=TRUE, exercise.lines=3}
+library(ggplot2)
+```
+
+```{r load-package-solution}
+library(ggplot2)
+```
+
+```{r load-package-check}
+grade_code("The ggplot package is now loaded.")
+```
+
+
+### Make a simple graph
+
+Now let's make a simple graph with this chunk:
+
+```{r gr_1, exercise=TRUE, exercise.lines=3}
+library(ggplot2)
+```
+
+```{r gr_1-solution}
+library(ggplot2)
+```
+
+```{r gr_1-check}
+grade_code("The ggplot package is now loaded.")
+```
+
+
+
+
+With `ggplot2` graphs are composed by several elements:
+
+- The graph is initiated with the function `ggplot()`.
+- The variables are called within the aesthetics function `aes()`.
+- The geometries are called with `geom_*()` functions. the (*) can be replaced by various type of geometries, 
 
 
 

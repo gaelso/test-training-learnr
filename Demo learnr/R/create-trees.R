@@ -16,7 +16,7 @@ make_trees <- function(.input_ba, .input_model = FALSE, .table = FALSE){
   
   tree <- tibble(
     dbh          = vec_dbh, 
-    height_calc  = exp(0.893 + 0.760 * log(dbh) - 0.0340 * log(dbh^2)),
+    height_calc  = exp(0.893 + 0.760 * log(dbh) - 0.0340 * (log(dbh))^2),
     height_error = exp(rnorm(n = n, mean = 0, sd = 0.243)),
     height_top   = height_calc * height_error,
     dist1        = sample(0:800, n, replace = T) / 100,
