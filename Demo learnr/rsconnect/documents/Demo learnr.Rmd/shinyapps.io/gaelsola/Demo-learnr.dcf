@@ -1,0 +1,12 @@
+name: Demo-learnr
+title: Demo-learnr
+username:
+account: gaelsola
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3249153
+bundleId: 3870973
+url: https://gaelsola.shinyapps.io/Demo-learnr/
+when: 1605613628.16496
+asMultiple: FALSE
+asStatic: FALSE

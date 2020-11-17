@@ -9,6 +9,8 @@ runtime: shiny_prerendered
 
 ```{r setup, include=FALSE}
 ## Libraries
+#devtools::install_github("rstudio-education/gradethis")
+#devtools::install_github("rstudio/packrat")
 library(learnr)
 library(gradethis)
 library(tidyverse)
@@ -32,6 +34,7 @@ set_plot_style <- "dark" ## Choose between  dark, light and print
 source("R/graphic-design.R")
 
 ```
+
 
 ## Introduction
 
@@ -79,7 +82,7 @@ Well, data analysis works the same way. If the objectives of the NFI are not cle
 On the opposite side, with a good design and implementation, based on clear objectives, the data analysis step can be rather straightforward and relatively simple.
 
 
-## What tools and applications for NFI data analysis?
+## Tools and applications
 
 TBD
 
@@ -98,6 +101,7 @@ In the following sections we are going to use R to create and visualize the tree
 ## Create random tree data
 
 Let's create some trees!
+
 
 ### Create the data
 
