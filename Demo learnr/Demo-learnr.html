@@ -165,8 +165,9 @@ NFI modules wheel.
 </center>
 <p>In the following sections we are going to use R to create and visualize the trees of one plot.</p>
 </div>
-<div id="section-create-random-tree-data-based-on-plot-basal-area" class="section level2">
-<h2>Create random tree data based on plot basal area</h2>
+<div id="section-create-random-tree-data" class="section level2">
+<h2>Create random tree data</h2>
+<p>Let’s create some trees!</p>
 <div id="section-create-the-data" class="section level3">
 <h3>Create the data</h3>
 <p><strong>This is a demo of embedded shiny module.</strong></p>
@@ -222,23 +223,25 @@ NFI modules wheel.
 </div>
 <div id="section-make-a-simple-graph" class="section level3">
 <h3>Make a simple graph</h3>
-<p>Now let’s make a simple graph with this chunk:</p>
+<p>With <code>ggplot2</code> graphs are composed by several elements:</p>
+<ul>
+<li>The graph is initiated with the function <code>ggplot()</code>. Most often the data source is specified inside this function.</li>
+<li>The variables are called within the aesthetics function <code>aes()</code>. These variables correspond to the column names of our input data. For example the tree top height in our table <code>tree</code> is named <strong><code>height_top</code></strong>.</li>
+<li>The geometries are called with <code>geom_*()</code> functions. the (*) can be replaced by various type of geometries, for example <code>geom_point()</code> will display points, <code>geom_line()</code> will link all data points with a line, etc.</li>
+</ul>
+<p>Now let’s make a simple graph. This following code is pre-filled but the <code>y</code> value is missing. Replace the blank (___) by the variable containing tree top height:</p>
 <div class="tutorial-exercise" data-label="gr_1" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="3">
-<pre class="text"><code>library(ggplot2)</code></pre>
+<pre class="text"><code>ggplot(tree, aes(x = dbh, y = ___)) +
+  geom_point()</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":40,"exercise.checker":["function (label = NULL, solution_code = NULL, user_code = NULL, ","    check_code = NULL, envir_result = NULL, evaluate_result = NULL, ","    envir_prep = NULL, last_value = NULL, ...) ","{","    (utils::getFromNamespace(\"grade_learnr_\", \"gradethis\"))(label = label, ","        solution_code = solution_code, user_code = user_code, ","        check_code = check_code, envir_result = envir_result, ","        evaluate_result = evaluate_result, envir_prep = envir_prep, ","        last_value = last_value, ...)","}"]}</script>
 </div>
 <div class="tutorial-exercise-support" data-label="gr_1-solution" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>library(ggplot2)</code></pre>
+<pre class="text"><code>ggplot(tree, aes(x = dbh, y = height_top)) +
+  geom_point()</code></pre>
 </div>
 <div class="tutorial-exercise-support" data-label="gr_1-check" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>grade_code(&quot;The ggplot package is now loaded.&quot;)</code></pre>
+<pre class="text"><code>grade_code(&quot;This is the correct graph!&quot;)</code></pre>
 </div>
-<p>With <code>ggplot2</code> graphs are composed by several elements:</p>
-<ul>
-<li>The graph is initiated with the function <code>ggplot()</code>.</li>
-<li>The variables are called within the aesthetics function <code>aes()</code>.</li>
-<li>The geometries are called with <code>geom_*()</code> functions. the (*) can be replaced by various type of geometries,</li>
-</ul>
 </div>
 </div>
 <div id="section-default-template-stuff" class="section level2">
@@ -310,7 +313,7 @@ session$onSessionEnded(function() {
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "choose-pic", question = structure("Which picture will be easier to edit for publication?", html = TRUE, class = c("html", "character")), answers = list(structure(list(id = "lnr_ans_6012e6d",     option = "left picture", value = "left picture", label = structure("left picture", html = TRUE, class = c("html",     "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_98a9c5e",     option = "right picture", value = "right picture", label = structure("right picture", html = TRUE, class = c("html",     "character")), correct = TRUE, message = structure("Yes that picture looks much better!", html = TRUE, class = c("html",     "character"))), class = c("tutorial_question_answer", "tutorial_quiz_answer"))), button_labels = list(submit = structure("Submit Answer", html = TRUE, class = c("html", "character")), try_again = structure("Try Again", html = TRUE, class = c("html", "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", "character")), message = NULL, post_message = NULL), ids = list(    answer = "choose-pic-answer", question = "choose-pic"), loading = structure("<strong>Loading:<\u002fstrong> \nWhich picture will be easier to edit for publication?\n<br/><br/><br/>", html = TRUE, class = c("html", "character")), random_answer_order = FALSE, allow_retry = TRUE,     seed = 58495772.4727608, options = list()), class = c("learnr_radio", "tutorial_question")))
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "choose-pic", question = structure("Which picture will be easier to edit for publication?", html = TRUE, class = c("html", "character")), answers = list(structure(list(id = "lnr_ans_1c68c8d",     option = "left picture", value = "left picture", label = structure("left picture", html = TRUE, class = c("html",     "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_aa3e4dd",     option = "right picture", value = "right picture", label = structure("right picture", html = TRUE, class = c("html",     "character")), correct = TRUE, message = structure("Yes that picture looks much better!", html = TRUE, class = c("html",     "character"))), class = c("tutorial_question_answer", "tutorial_quiz_answer"))), button_labels = list(submit = structure("Submit Answer", html = TRUE, class = c("html", "character")), try_again = structure("Try Again", html = TRUE, class = c("html", "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", "character")), message = NULL, post_message = NULL), ids = list(    answer = "choose-pic-answer", question = "choose-pic"), loading = structure("<strong>Loading:<\u002fstrong> \nWhich picture will be easier to edit for publication?\n<br/><br/><br/>", html = TRUE, class = c("html", "character")), random_answer_order = FALSE, allow_retry = TRUE,     seed = 609010486.716407, options = list()), class = c("learnr_radio", "tutorial_question")))
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">

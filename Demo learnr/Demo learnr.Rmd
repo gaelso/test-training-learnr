@@ -95,7 +95,9 @@ Let's start to code !
 In the following sections we are going to use R to create and visualize the trees of one plot.
 
 
-## Create random tree data based on plot basal area
+## Create random tree data
+
+Let's create some trees!
 
 ### Create the data
 
@@ -164,28 +166,27 @@ grade_code("The ggplot package is now loaded.")
 
 ### Make a simple graph
 
-Now let's make a simple graph with this chunk:
+With `ggplot2` graphs are composed by several elements:
+
+- The graph is initiated with the function `ggplot()`. Most often the data source is specified inside this function.
+- The variables are called within the aesthetics function `aes()`. These variables correspond to the column names of our input data. For example the tree top height in our table `tree` is named **`height_top`**.
+- The geometries are called with `geom_*()` functions. the (*) can be replaced by various type of geometries, for example `geom_point()` will display points, `geom_line()` will link all data points with a line, etc.
+
+Now let's make a simple graph. This following code is pre-filled but the `y` value is missing. Replace the blank (___) by the variable containing tree top height:
 
 ```{r gr_1, exercise=TRUE, exercise.lines=3}
-library(ggplot2)
+ggplot(tree, aes(x = dbh, y = ___)) +
+  geom_point()
 ```
 
 ```{r gr_1-solution}
-library(ggplot2)
+ggplot(tree, aes(x = dbh, y = height_top)) +
+  geom_point()
 ```
 
 ```{r gr_1-check}
-grade_code("The ggplot package is now loaded.")
+grade_code("This is the correct graph!")
 ```
-
-
-
-
-With `ggplot2` graphs are composed by several elements:
-
-- The graph is initiated with the function `ggplot()`.
-- The variables are called within the aesthetics function `aes()`.
-- The geometries are called with `geom_*()` functions. the (*) can be replaced by various type of geometries, 
 
 
 
