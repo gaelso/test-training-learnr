@@ -52,7 +52,7 @@ Please watch the introduction video below and let's get started!
 
 The data analysis builds on all the previous topics covered in the NFI modules and it's very important to have a good understanding of each of these steps before even starting to think about the data analysis. 
 
-```{r module-wheel, fig.align='center', fig.cap="NFI modules wheel."}
+```{r module-wheel, fig.align='center', fig.cap="NFI modules wheel.", out.width="80%"}
 
 knitr::include_graphics("images/NFI-e-learning-07-Analysis.png")
 
