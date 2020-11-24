@@ -21,7 +21,8 @@ library(ggdark)
 tutorial_options(
   exercise.timelimit = 40,
   exercise.checker = gradethis::grade_learnr#,
-  #exercise.error.check.code = gradethis::grade_learnr_error
+  #exercise.startover = FALSE,
+  #exercise.error.check.code = gradethis::grade_code
   )
 
 ## Hide non-exercise R chunks
@@ -44,7 +45,7 @@ Please watch the introduction video below and let's get started!
 
 <center>
 
-![](https://youtu.be/MVHWr30Pi0M){width='80%'}
+![Link to video: https://youtu.be/MVHWr30Pi0M](https://youtu.be/MVHWr30Pi0M){width='80%'}
 
 </center>
 
@@ -67,8 +68,8 @@ INSERT bad photo / good photo
 ```{r choose-pic}
 question("Which picture will be easier to edit for publication?",
     answer("left picture"),
-    answer("right picture", correct = TRUE, message = "Yes that picture looks much better!"),
-    allow_retry = TRUE
+    answer("right picture", correct = TRUE, message = "Yes that picture looks much better!")#,
+    #allow_retry = TRUE
   )
 ```
 

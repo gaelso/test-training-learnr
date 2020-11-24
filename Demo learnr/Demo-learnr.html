@@ -121,7 +121,10 @@ $(document).ready(function () {
 <p>Welcome to the section 7 of the training modules on National Forest Inventory. Here we are going to talk about data analysis. And we are going to practice some of the key calculation steps together with the statistical language R.</p>
 <p>Please watch the introduction video below and let’s get started!</p>
 <center>
-<p><img src="https://youtu.be/MVHWr30Pi0M" style="width:80.0%" /></p>
+<div class="figure">
+<img src="https://youtu.be/MVHWr30Pi0M" style="width:80.0%" alt="" />
+<p class="caption">Link to video: <a href="https://youtu.be/MVHWr30Pi0M" class="uri">https://youtu.be/MVHWr30Pi0M</a></p>
+</div>
 </center>
 </div>
 <div id="section-overview-of-data-analysis" class="section level2">
@@ -297,7 +300,8 @@ library(ggdark)
 tutorial_options(
   exercise.timelimit = 40,
   exercise.checker = gradethis::grade_learnr#,
-  #exercise.error.check.code = gradethis::grade_learnr_error
+  #exercise.startover = FALSE,
+  #exercise.error.check.code = gradethis::grade_code
   )
 
 ## Hide non-exercise R chunks
@@ -315,7 +319,7 @@ session$onSessionEnded(function() {
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "choose-pic", question = structure("Which picture will be easier to edit for publication?", html = TRUE, class = c("html", "character")), answers = list(structure(list(id = "lnr_ans_82427c",     option = "left picture", value = "left picture", label = structure("left picture", html = TRUE, class = c("html",     "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_1562645",     option = "right picture", value = "right picture", label = structure("right picture", html = TRUE, class = c("html",     "character")), correct = TRUE, message = structure("Yes that picture looks much better!", html = TRUE, class = c("html",     "character"))), class = c("tutorial_question_answer", "tutorial_quiz_answer"))), button_labels = list(submit = structure("Submit Answer", html = TRUE, class = c("html", "character")), try_again = structure("Try Again", html = TRUE, class = c("html", "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", "character")), message = NULL, post_message = NULL), ids = list(    answer = "choose-pic-answer", question = "choose-pic"), loading = structure("<strong>Loading:<\u002fstrong> \nWhich picture will be easier to edit for publication?\n<br/><br/><br/>", html = TRUE, class = c("html", "character")), random_answer_order = FALSE, allow_retry = TRUE,     seed = 2048507597.04609, options = list()), class = c("learnr_radio", "tutorial_question")))
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "choose-pic", question = structure("Which picture will be easier to edit for publication?", html = TRUE, class = c("html", "character")), answers = list(structure(list(id = "lnr_ans_26b078a",     option = "left picture", value = "left picture", label = structure("left picture", html = TRUE, class = c("html",     "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_9abb420",     option = "right picture", value = "right picture", label = structure("right picture", html = TRUE, class = c("html",     "character")), correct = TRUE, message = structure("Yes that picture looks much better!", html = TRUE, class = c("html",     "character"))), class = c("tutorial_question_answer", "tutorial_quiz_answer"))), button_labels = list(submit = structure("Submit Answer", html = TRUE, class = c("html", "character")), try_again = structure("Try Again", html = TRUE, class = c("html", "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", "character")), message = NULL, post_message = NULL), ids = list(    answer = "choose-pic-answer", question = "choose-pic"), loading = structure("<strong>Loading:<\u002fstrong> \nWhich picture will be easier to edit for publication?\n<br/><br/><br/>", html = TRUE, class = c("html", "character")), random_answer_order = FALSE, allow_retry = FALSE,     seed = 99319951.4537506, options = list()), class = c("learnr_radio", "tutorial_question")))
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
